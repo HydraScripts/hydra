@@ -1,5 +1,7 @@
 local CoreGui = game:GetService('CoreGui')
-
+local UserInputService = game:GetService('UserInputService')
+local LocalPlayer = game:GetService('Players').LocalPlayer
+local TweenService = game:GetService('TweenService')
 local HttpService = game:GetService('HttpService') 
 
 local Library = {
@@ -14,24 +16,25 @@ local Library = {
 }
 
 function Library:disconnect()
-	for _, value in Library.connections do
-		if not Library.connections[value] then
-			continue
-		end
+    for _, value in Library.connections do
+        if not Library.connections[value] then
+            continue
+        end
 
-		Library.connections[value]:Disconnect()
-		Library.connections[value] = nil
-	end
+        Library.connections[value]:Disconnect()
+        Library.connections[value] = nil
+    end
 end
 
-function Library:clear()
-	for _, object in CoreGui:GetChildren() do
-		if object.Name ~= "cac" then
-			continue
-		end
-	
-		object:Destroy()
-	end
+-- Call this function AFTER the UI has been created
+function Library:clear() 
+    for _, object in CoreGui:GetChildren() do
+        if object.Name ~= "cac" then
+            continue
+        end
+    
+        object:Destroy()
+    end
 end
 
 function Library:exist()
@@ -56,8 +59,8 @@ function Library:load_flags()
     Library.Flags = HttpService:JSONDecode(flags)
 end
 
-Library.load_flags()
-Library.clear()
+Library.load_flags() -- Load flags on script start
+
 
 function Library:open()
 	self.Container.Visible = true
@@ -301,7 +304,7 @@ function Library:new()
             Library.dragging = true
             Library.drag_position = input.Position
             Library.start_position = container.Container.Position
-
+ Library:clear() 
             input.Changed:Connect(function()
                 if input.UserInputState == Enum.UserInputState.End then
                     Library.dragging = false

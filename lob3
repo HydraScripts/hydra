@@ -1342,5 +1342,7 @@ function Library:new()
 		end
         return Module
     end
+
+return library
     return Tab
 end

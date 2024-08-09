@@ -4,6 +4,8 @@ local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
 local HttpService = game:GetService('HttpService') 
 
+local Mouse = LocalPlayer:GetMouse()
+
 local Library = {
     connections = {};
     Flags = {};
@@ -304,7 +306,7 @@ function Library:new()
             Library.dragging = true
             Library.drag_position = input.Position
             Library.start_position = container.Container.Position
- Library:clear() 
+
             input.Changed:Connect(function()
                 if input.UserInputState == Enum.UserInputState.End then
                     Library.dragging = false

@@ -1,5 +1,5 @@
 --// library script private
-getgenv().namehub = "Atonium"
+getgenv().namehub = "Hydra | RF24"
 local UserInputService = game:GetService('UserInputService')
 local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
@@ -21,9 +21,6 @@ local Library = {
 }
 
 
-if not isfolder("cac hub") then
-    makefolder("cac hub")
-end
 
 function Library:disconnect()
 	for _, value in Library.connections do

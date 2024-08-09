@@ -1,3 +1,14 @@
+local Library = {
+    connections = {};
+    Flags = {};
+    Enabled = true;
+    slider_drag = false;
+    core = nil;
+    dragging = false;
+    drag_position = nil;
+    start_position = nil;
+}
+
 function Library:disconnect()
 	for _, value in Library.connections do
 		if not Library.connections[value] then
